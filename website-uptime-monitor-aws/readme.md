@@ -1,20 +1,44 @@
-✅ Scenario 1 – Website Uptime Logging
-Created a Python script (website_monitor_s3.py) that:
+# 🌐 Website Uptime Monitor (AWS + Python)
 
-Sends HTTP requests to a list of predefined websites
+This project monitors the availability of a list of websites and logs their status.
 
-Logs the result (UP, DOWN, or status code) with a timestamp to a local file (log.txt)
+---
 
-☁️ Scenario 2 – AWS Integration
-Integrated AWS services using boto3:
+## ✅ Scenario 1 – Website Uptime Logging (Local)
 
-SNS: Sends alert emails when a site is down or returns non-200 status
+Created a Python script `website_monitor_s3.py` that:
 
-S3: Uploads log.txt to an S3 bucket after every execution
+- Sends HTTP GET requests to a list of predefined websites.
+- Logs the result (✅ UP, ❌ DOWN, or ⚠️ Non-200) along with a timestamp to a local `log.txt` file.
 
-⏱️ Scenario 3 – Automation Ready
-The script is ready to be scheduled via:
+- Can be manually run or has been successfully scheduled via **Windows Task Scheduler** ✅
 
-Windows Task Scheduler for periodic execution
+---
 
-Or AWS Lambda (if ported slightly) for cloud-native automation
+## ☁️ Scenario 2 – Cloud-Native Automation with AWS Lambda
+
+A second script `website_monitor_lambda.py` is adapted for AWS Lambda and includes:
+
+- 📤 Uploading log content to an **S3 bucket** (`elasticbeanstalk-us-east-2-582354273940`).
+- 📣 Sending alert messages via **SNS** when a site is DOWN or returns an unexpected status.
+
+AWS services configured:
+
+- **S3** – Used to store the uptime log file in cloud storage.
+- **SNS** – Sends email notifications for failed checks.
+- **IAM Role** – Custom permissions attached to allow `PutObject` to S3 and `Publish` to SNS.
+- **Lambda Execution Role** – Scoped least-privilege permissions added manually.
+- **EventBridge Scheduler** – Triggers Lambda function **weekly** under the name `website-monitor-weekly-schedule`.
+
+---
+
+## 📁 Project Structure
+
+```bash
+website-uptime-monitor-aws/
+│
+├── website_monitor_s3.py           # Local version (uses log.txt + can run via Task Scheduler)
+├── website_monitor_lambda.py       # AWS Lambda version (uses io.StringIO + boto3)
+├── log.txt                         # Log file (used in local run only)
+└── readme.md                       # This documentation
+
