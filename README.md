@@ -7,7 +7,7 @@ Each project is self-contained and demonstrates hands-on skills with cloud infra
 
 ## 📦 Projects
 
-### 1. [🔁 S3 Backup Tool](./s3-backup-tool)
+### 1. [🔁 S3 Backup Tool](./1-s3-backup-tool)
 
 A simple Python tool to automatically back up local directories to an Amazon S3 bucket.  
 It supports versioning, error logging, and is suitable for scheduled local automation or future deployment on cloud.
@@ -19,7 +19,7 @@ It supports versioning, error logging, and is suitable for scheduled local autom
 
 ---
 
-### 2. [🌐 Website Uptime Monitor](./website-uptime-monitor-aws)
+### 2. [🌐 Website Uptime Monitor](./2-website-uptime-monitor-aws)
 
 A monitoring tool that checks if websites are online and logs the results.  
 Supports both **local execution** and **cloud-native automation via AWS Lambda** with weekly scheduling.
@@ -32,7 +32,7 @@ Supports both **local execution** and **cloud-native automation via AWS Lambda**
 
 ---
 
-### 3. [📊 EC2 Remote Runner (SSM + Lambda)](./ec2-remote-runner)
+### 3. [📊 EC2 Remote Runner (SSM + Lambda)](./3-ec2-remote-runner)
 
 A server monitoring system that runs shell commands on an EC2 instance using AWS Systems Manager and stores the output in S3.  
 Also includes an alert system via SNS for critical disk usage.
